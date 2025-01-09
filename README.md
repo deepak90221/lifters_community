@@ -1,1 +1,0 @@
-# lifters_community
