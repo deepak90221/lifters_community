@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powerlifters Weekly Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to right, #ffffff, #e9ecef);
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .exercise-details {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #555;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            font-size: 1em;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #e9ecef;
+        }
+        li:last-child {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .important-notes {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            font-size: 1em;
+            color: #856404;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            label {
+                font-size: 1em;
+            }
+            select {
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Powerlifters Weekly Schedule</h1>
+    <div class="container">
+        <label for="day-select">Select Day:</label>
+        <select id="day-select" onchange="showDetails()">
+            <option value="">-- Select a Day --</option>
+            <option value="monday">Monday: Chest Day</option>
+            <option value="tuesday">Tuesday: Shoulders</option>
+            <option value="wednesday">Wednesday: Squats</option>
+            <option value="thursday">Thursday: Bicep + Tricep (Fitness)</option>
+            <option value="friday">Friday: Deadlift (Back Day)</option>
+            <option value="saturday">Saturday: Bench Press</option>
+        </select>
+
+        <div class="exercise-details" id="exercise-details">
+            <h2>Workout Details:</h2>
+            <ul id="details-list">
+                <li>Select a day to see the workout plan.</li>
+            </ul>
+        </div>
+
+        <div class="important-notes">
+            <p><strong>Important:</strong><b> "If you find it hard to follow the routine, you may exit our Powerlifters community"</b><strong></strong>, as excuses are not accepted.</p>
+            <p>Ensure to drink enough water. Carry a water bottle and electrolytes you can find them in medical stores.</p>
+        </div>
+    </div>
+
+    <script>
+        const workoutDetails = {
+            monday: [
+                "40/60/100 Pushups ",
+                "Warmup",
+                "Bench Press ( progressive overload)",
+                "Bar Dips (3 sets)",
+                "Inclined Chest Press (4 sets)",
+                "Chest Presses (4 sets)"
+            ],
+            tuesday: [
+                "Overhead Shoulder Press (progressive overload)",
+                "Lateral Raises (3 sets)",
+                "Front Raises (3 sets)",
+                "Arnold Press (4 sets)",
+                "Shrugs (3 sets)"
+            ],
+            wednesday: [
+                "Warmup",
+                "Squats (progressive overload)",
+                "Front Squats (4 sets)",
+                "Leg Press (4 sets)",
+                "Lunges (3 sets)"
+            ],
+            thursday: [
+                "Bicep Curls (progressive overload)",
+                "Tricep Extensions (4 sets)",
+                "Hammer Curls (3 sets)",
+                "Skull Crushers (4 sets)",
+                "Rope Pushdowns (3 sets)",
+                "Diamond Pushups (3 sets)"
+            ],
+            friday: [
+                "Deadlift Warmup",
+                "Deadlifts (progressive overload)",
+                "Pull-Ups (3 sets)",
+                "Bent Over Rows (4 sets)",
+                "Lat Pulldowns (4 sets)"
+            ],
+            saturday: [
+                "Warmup",
+                "Bench Press (progressive overload)",
+                "Inclined Bench Press (4 sets)",
+                "Close-Grip Bench Press (4 sets)",
+                "Chest Flys (3 sets)"
+            ]
+        };
+
+        function showDetails() {
+            const day = document.getElementById("day-select").value;
+            const detailsList = document.getElementById("details-list");
+            detailsList.innerHTML = "";
+
+            if (day && workoutDetails[day]) {
+                workoutDetails[day].forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    detailsList.appendChild(li);
+                });
+                const prCheck = document.createElement("li");
+                prCheck.textContent = "Note: PR checking must be done once a month.";
+                prCheck.style.color = "red";
+                detailsList.appendChild(prCheck);
+            } else {
+                const li = document.createElement("li");
+                li.textContent = "Select a day to see the workout plan.";
+                detailsList.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
